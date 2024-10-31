@@ -26,7 +26,7 @@ Add the path where the nodejs<br>
 ## Getting Started
 ### 1. Clone the project repository
 ```bash
-git clone https://github.com/csula-cs3337swe/202308Group2-repo.git
+gh repo clone knguye239/Friend-With-Schedule-repo
 ```
 
 ### 2. Navigate to the project directory
