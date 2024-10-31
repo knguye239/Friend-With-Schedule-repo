@@ -1,0 +1,214 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 50vh;
+  display: flex ;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 150px;
+  background-image: url('images/bluemint.png'); 
+  background-size: cover;
+}
+
+    .container {
+      display: flex ; 
+    }
+    .myschedule {
+      width: 300px;
+      height: 200px;
+      border: 5px solid #000000;
+      overflow: auto;
+      margin-right: 10px;
+    }
+    .myschedule input{
+      width: 100%;
+      height: 20%;
+
+    }
+    .friendsbox {
+      width: 300px;
+      height: 200px;
+      border: 5px solid #000000;
+      overflow: auto;
+      margin-right: 100px;
+    }
+    .friendslist {
+      width: 300px;
+      height: 600px;
+      border: 5px solid #000000;
+      overflow: auto;
+
+     }
+     .calendar-link{
+        text-align: center;
+        background-color: #c3f3f7;
+        width: 5%;
+        height: 20px;
+        border: 5px solid #000000;
+        padding: 10px;
+        margin-right: 750px;
+        margin-top: -300;
+     }
+     .friendsimport{
+        text-align: center;
+        background-color: #c3f3f7;
+        width: 5%;
+        height: 20px;
+        border: 5px solid #000000;
+        padding: 10px;
+        margin-top: -47;
+        margin-right: 110px;
+     }
+     .title1{
+        margin-right: 720;
+        margin-bottom: -55px;
+        font-size: 36px;
+        color: #333;
+        line-height: 1.5;
+     }
+
+         .title2{
+          margin-bottom: -55px;
+        margin-right: 100;
+        font-size: 36px;
+        color: #333;
+        line-height: 1.5;
+     }
+     .title3{
+        margin-left: 730;
+        font-size: 36px;
+        color: #333;
+        line-height: 1.5;
+     }
+     .FAQ{
+
+        font-size: 36px;
+        color: #333;
+        line-height: 1.5;
+        position: absolute;
+            bottom: 15;
+            left: 80;
+            display: flex;
+ 
+     }
+
+     .helpcircle {
+      width: 50px;
+      width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%; 
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;     
+    }
+    .helpcircle a {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+    }
+    .add-friend-button {
+  width: 150px;
+  height: 40px;
+  background-color: #4CAF50; 
+  color: #fff; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  margin: 10px; 
+  width: 93%;
+  height: 10%;
+}
+
+.add-friend-button:hover {
+  background-color: #45a049; 
+}
+.add-friend-to-list {
+  width: 150px;
+  height: 40px;
+  background-color: #4CAF50; 
+  color: #fff; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  margin: 10px; 
+  width: 93%;
+  height: 10%;
+}
+
+.add-friend-to-list:hover {
+  background-color: #45a049; 
+}
+
+.logout {
+  width: 150px;
+  height: 40px;
+  background-color: #4CAF50; 
+  color: #fff; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  margin: 10px; 
+
+  position: absolute;
+            top: 0;
+            right: 0;
+}
+
+.logout:hover {
+  background-color: #f50000; 
+}
+
+  </style>
+</head>
+
+
+
+<body>
+  <button class="logout">Logout</button>
+
+    <div class="title1">My Schedule</div>
+    <div class="title2">Friends' Schedule</div>
+    <div class="title3">Friends list</div>
+    <div class="container">
+  <div class="myschedule">
+    <input type="text" placeholder="Monday"><br>
+    <input type="text" placeholder="Tuesday"><br>
+    <input type="text" placeholder="Wednesday"><br>
+    <input type="text" placeholder="Thursday"><br>
+    <input type="text" placeholder="Friday"><br>
+    <input type="text" placeholder="Saturday"><br>
+    <input type="text" placeholder="Sunday"><br>
+  </div>
+  <div class="friendsbox">
+    <button class="add-friend-button">Add Friend To List</button>
+</div> 
+<div class="friendslist">
+  <button class="add-friend-button">Add Friend</button>
+</div> 
+
+  </div>
+  <div class="calendar-link">
+    <a href="calendar.html" >Generate</a>
+    </div>
+    <div class="friendsimport">
+        <!-- <label>Import</label> -->
+        <button onclick="window.location.href='/google'">Import</button>
+        </div>
+        <div class="FAQ">FAQ</div>
+        <div class="helpcircle">
+          <a href="help.html">?</a>
+          </div>
+</body>
+</html>

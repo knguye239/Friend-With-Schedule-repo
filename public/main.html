@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Calendar Integration</title>
+    <script src="https://accounts.google.com/gsi/client" onload="initClient()" async defer></script>
+</head>
+<body>
+    <script>
+        var client;
+
+        function initClient() {
+            client = google.accounts.oauth2.initCodeClient({
+                client_id: '726132777814-t4honqupo7mafvopdtfn9i9nqdseb64g.apps.googleusercontent.com',
+                scope: 'https://www.googleapis.com/auth/calendar',
+                ux_mode: 'popup',
+                callback: (response) => {
+                    console.log("Callback function invoked!");
+                    console.log("Callback Message: ", response.code);
+                    
+                    var code_receiver_uri = 'http://localhost:3000/google-login';
+                    // Send auth code to your backend platform
+                    fetch(code_receiver_uri, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: 'code=' + response.code
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log('Signed in as: ' + data);
+                    })
+                    .catch(error => {
+                        console.error("Request failed: ", error);
+                    });
+                },
+            });
+        }
+    </script>
+
+    <!-- Configuration for Google Sign-In -->
+    <div id="g_id_onload" 
+        data-client_id="726132777814-t4honqupo7mafvopdtfn9i9nqdseb64g.apps.googleusercontent.com"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-login_uri="http://localhost:3000/google-login"
+        data-auto_prompt="false">
+    </div>
+
+    <!-- Google Sign-In button with additional styling properties -->
+    <div class="g_id_signin" 
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large"
+        data-logo_alignment="left">
+    </div>
+</body>
+</html>

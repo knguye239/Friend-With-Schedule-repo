@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Calendar</title>
+
+    <!-- FullCalendar -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5/main.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5/main.js"></script>    
+    
+    <!-- bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <select id="calendar-select" class="form-control">
+        <% calendarIds.forEach(calendar => { %>
+            <% if (calendar.primary) { %>
+                <option value="<%= calendar.id %>" selected><%= calendar.summary %></option>
+            <% } else { %>
+                <option value="<%= calendar.id %>"><%= calendar.summary %></option>
+            <% } %>
+        <% }); %>
+    </select>
+
+    <div id="calendar"></div>
+
+    <script>
+        // Declare calendar variable in outer scope
+        var calendar;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+            });
+            calendar.render();
+
+            // Load available calendars into dropdown
+            var calendarSelect = document.getElementById('calendar-select');
+            <% calendarIds.forEach(function(calendar) { %>
+                var option = document.createElement('option');
+                option.value = '<%= calendar.id %>';
+                option.text = '<%= calendar.summary %>';
+                calendarSelect.appendChild(option);
+            <% }); %>
+        });
+
+        document.getElementById('calendar-select').addEventListener('change', function() {
+            const selectedCalendarId = this.value;
+
+            fetch('/fetchEventsByCalendarId', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ calendarId: selectedCalendarId })
+            })
+            .then(response => response.json())
+            .then(events => {
+                calendar.getEventSources().forEach(source => {
+                    source.remove();
+                });
+                calendar.addEventSource(events); 
+            })
+            .catch(error => {
+                console.error("Error fetching events:", error);
+            });
+        });
+
+    </script>
+
+    <button></button>  
+</body>
+</html>

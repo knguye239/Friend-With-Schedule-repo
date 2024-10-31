@@ -1,0 +1,131 @@
+
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap');
+
+* {  
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: #00CC99;
+     */
+    background-image: url('/images/bluemint.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    background-color: #FFFFFF;
+    padding: 40px;
+    width: 425px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header{
+    font-size: 30px;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.app-name{
+    font-family: 'Dosis', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input{
+    height: 40px;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    border: 1px #e0e0e0 solid;
+    outline: none;
+}
+
+.input-password {
+    position: relative;
+    display: flex;
+    align-items: center; 
+}
+
+#checkEye1{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#checkEye2{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.button {
+    border-bottom: 1px solid #e0e0e0;  
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.button button{
+    height: 40px;
+    width: 100%;
+    border: none;
+    color:#000000;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #00CC99;
+    cursor: pointer;
+}
+
+.form-link {
+    font-size: 14px;
+    color: #7a7a7a;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-link a {
+    color: #5a5a5a;
+    text-decoration: none;
+}
+
+.form-link a:hover {
+    text-decoration: underline;
+}
+
+/* Disable the reveal password icon in Edge */
+::-ms-reveal {
+    display: none;
+}

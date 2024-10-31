@@ -1,0 +1,85 @@
+<!--
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var eventsData = <%- events %>;
+
+            var today = new Date();
+            var currentYear = today.getFullYear();
+            var currentMonth = today.getMonth();
+
+            var startDate = new Date(currentYear, currentMonth, 1);
+            var endDate = new Date(currentYear, currentMonth + 3, 2);
+            endDate.setDate(endDate.getDate() - 1); 
+
+            calendar = new FullCalendar.Calendar(calendarEl, {  // remove the "var" keyword here
+                initialView: 'dayGridMonth',
+                events: eventsData,
+                validRange: {
+                    start: startDate,
+                    end: endDate
+                }
+            });
+            calendar.render();
+        });
+-->
+
+router.get('/google/redirect', async (req, res) => {
+    const code = req.query.code;
+
+    try {
+        const { tokens } = await oauth2Client.getToken(code);
+        oauth2Client.setCredentials(tokens);
+        
+        // Initialize calendar here
+        const calendar = google.calendar({
+            version: "v3",
+            auth: oauth2Client
+        });
+
+        // check user's calendar list
+        const calendarListResponse = await calendar.calendarList.list();
+        const calendarIds = calendarListResponse.data.items.map(item => ({
+            id: item.id,
+            summary: item.summary
+        }));
+
+        if (calendarIds.length) {
+            res.render('googleCalendar', { calendarIds: calendarIds });
+        } else {
+            res.send('No calendars found.');
+        }
+        
+        // After setting the credentials, get the schedule
+        // const now = new Date();
+        // const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+        
+        // // set 3 month
+        // const lastDayOfTargetMonth = new Date(now.getFullYear(), now.getMonth() + 3, 0);
+        
+        // const response = await calendar.events.list({
+        //     calendarId: 'primary',
+        //     timeMin: firstDayOfMonth.toISOString(),
+        //     timeMax: lastDayOfTargetMonth.toISOString(),
+        //     singleEvents: true,
+        //     orderBy: 'startTime'
+        // });
+
+        // const events = response.data.items;
+        // if (events.length) {
+        //     let eventArray = events.map(event => {
+        //         const start = event.start.dateTime || event.start.date;
+        //         return {
+        //             title: event.summary,
+        //             start: start
+        //         };
+        //     });
+        //     // send to googleCalendar.ejs
+        //     res.render('googleCalendar', { events: JSON.stringify(eventArray), calendarIds: calendarIds });
+        // } else {
+        //     res.send('No upcoming events found.');
+        // }
+    } catch (error) {
+        console.error('Error fetching events:', error);
+        res.status(500).send('Failed to fetch events.');
+    }
+});

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends With Schedule</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/form.css">
+    
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+    <section class="container">
+        <div class="form login">
+            <div class="content">
+                <header class="app-name">Friends With Schedule</header>
+                <header>Login</header>
+                <form action="#" id="loginForm">
+                    <!-- username -->
+                    <div class="input-username">
+                        <input type = "text" id="username" class="input" placeholder="Username">
+                    </div>
+
+                    <!-- user password -->
+                    <div class="input-password">
+                        <input type="password" id="password1" class="input" placeholder="Password">
+                        <i class="bx bxs-show " id="checkEye1"></i>
+                    </div> 
+
+                    <!-- button -->
+                    <div class="button">
+                        <button>Login</button>
+                    </div>
+
+                    <!-- register -->
+                    <div class="form-link">
+                        <span>Don't have an account? <a href="signup.html" class"register">Sign Up</a></span>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <!-- Label for add event function -->
+                    <label htmlFor="summary">Summary</label>
+                    <br />
+                    <input type="text" id="summary" value={summary} onChange={e => setSummary(e.target.value)} />
+                    <br />
+                
+                    <!-- Description -->
+                    <label htmlFor="description">Description</label>
+                    <br />
+                    <input type="text" id="description" value={description} onChange={e => setDescription(e.target.value)} />
+                    <br />
+                
+                    <!-- Location -->
+                    <label htmlFor="location">Location</label>
+                    <br />
+                    <input type="text" id="location" value={location} onChange={e => setLocation(e.target.value)} />
+                    <br />
+                
+                    <!-- Start Date and Time -->
+                    <label htmlFor="startDateTime">Start Date and Time</label>
+                    <br />
+                    <input type="datetime-local" id="startDateTime" value={startDateTime} onChange={e => setStartDateTime(e.target.value)} />
+                    <br />
+                
+                    <!-- End Date and Time -->
+                    <label htmlFor="endDateTime">End Date and Time</label>
+                    <br />
+                    <input type="datetime-local" id="endDateTime" value={endDateTime} onChange={e => setEndDateTime(e.target.value)} />
+                    <br />
+                
+                    <!-- Button for create event -->
+                    <button type="button" onClick={handleCreateEvent}>Create Event</button>
+                </form>
+                
+            </div>
+        </div>
+    </section>
+    <script src="js/login_form.js"></script>
+</body>
+</html>
